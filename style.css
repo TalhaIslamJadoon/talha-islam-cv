@@ -1,0 +1,107 @@
+/* Talha Islam — CV styles */
+
+:root {
+  --ink: #1a2332;
+  --muted: #5a6a7f;
+  --accent: #0f5e68;
+  --line: #d8dee6;
+  --chip-bg: #eef4f5;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  color: var(--ink);
+  background: #f2f4f7;
+  line-height: 1.5;
+}
+
+.cv {
+  max-width: 860px;
+  margin: 28px auto;
+  background: #fff;
+  padding: 44px 52px 36px;
+  border-radius: 10px;
+  box-shadow: 0 2px 14px rgba(20, 35, 55, 0.10);
+}
+
+.header { border-bottom: 3px solid var(--accent); padding-bottom: 16px; }
+.name { margin: 0; font-size: 34px; letter-spacing: 0.4px; }
+.headline { margin: 4px 0 0; font-size: 16px; color: var(--accent); font-weight: 600; }
+.location { margin: 2px 0 0; color: var(--muted); }
+
+.contacts {
+  list-style: none;
+  margin: 12px 0 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 22px;
+  font-size: 14px;
+}
+.contacts a { color: var(--ink); text-decoration: none; border-bottom: 1px dotted var(--muted); }
+.contacts a:hover { color: var(--accent); }
+.contact-label { color: var(--muted); }
+
+.availability { margin: 10px 0 0; font-size: 14px; font-weight: 600; color: var(--accent); }
+
+.section { margin-top: 26px; }
+.section-title {
+  margin: 0 0 10px;
+  font-size: 15px;
+  text-transform: uppercase;
+  letter-spacing: 1.6px;
+  color: var(--accent);
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 5px;
+}
+
+.summary { margin: 0; font-size: 15px; }
+
+.entry { margin-bottom: 14px; }
+.entry-title { margin: 0; font-size: 16px; }
+.entry-title a { color: var(--ink); text-decoration: none; }
+.entry-title a:hover { color: var(--accent); }
+.entry-org { margin: 1px 0 0; color: var(--muted); font-size: 14px; font-weight: 600; }
+.entry-note { margin: 1px 0 0; color: var(--muted); font-size: 14px; }
+
+.points { margin: 4px 0 0; padding-left: 18px; font-size: 14.5px; }
+.points li { margin: 2px 0; }
+
+.chips { list-style: none; margin: 6px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.chip {
+  background: var(--chip-bg);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 3px 12px;
+  font-size: 13.5px;
+}
+
+.footer { margin-top: 30px; border-top: 1px solid var(--line); padding-top: 10px; color: var(--muted); font-size: 13px; }
+.footer p { margin: 0; }
+
+.actions { text-align: center; margin: 0 auto 30px; }
+.actions button {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 22px;
+  font-size: 15px;
+  cursor: pointer;
+}
+.actions button:hover { opacity: 0.9; }
+
+@media (max-width: 640px) {
+  .cv { padding: 28px 22px; margin: 12px; }
+  .name { font-size: 27px; }
+}
+
+@media print {
+  body { background: #fff; }
+  .cv { box-shadow: none; margin: 0; max-width: none; border-radius: 0; padding: 10px 6px; }
+  .no-print { display: none !important; }
+  a { color: var(--ink) !important; border-bottom: none !important; }
+}
