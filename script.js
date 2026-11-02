@@ -58,6 +58,13 @@ const CV = {
       href: "https://www.youtube.com/@AIMoviesPakistan"
     }
   ],
+  publications: [
+    {
+      name: "The Human Foundation of Artificial Intelligence: Why Diverse Data and Careful Annotation Decide Whether AI Works",
+      desc: "Preprint · Zenodo · 30 Oct 2026 · DOI: 10.5281/zenodo.23790604 · Open Access, CC BY 4.0 · Experience-based article, not peer-reviewed research",
+      href: "https://doi.org/10.5281/zenodo.23790604"
+    }
+  ],
   skillGroups: [
     {
       name: "Data & AI",
@@ -154,6 +161,23 @@ function renderProjects(root) {
   root.appendChild(s);
 }
 
+function renderPublications(root) {
+  const s = section("Publications");
+  CV.publications.forEach((pub) => {
+    const block = el("div", "entry");
+    const h = el("h3", "entry-title");
+    const a = el("a", null, pub.name);
+    a.href = pub.href;
+    a.target = "_blank";
+    a.rel = "noopener";
+    h.appendChild(a);
+    block.appendChild(h);
+    block.appendChild(el("p", "summary", pub.desc));
+    s.appendChild(block);
+  });
+  root.appendChild(s);
+}
+
 function renderSkills(root) {
   const s = section("Skills");
   CV.skillGroups.forEach((group) => {
@@ -185,6 +209,7 @@ function render() {
   renderSummary(root);
   renderExperience(root);
   renderProjects(root);
+  renderPublications(root);
   renderSkills(root);
   renderSimpleList(root, "Education", CV.education);
   renderSimpleList(root, "Languages", CV.languages.map((l) => ({ item: l.item, note: l.note })));
