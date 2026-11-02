@@ -60,6 +60,11 @@ const CV = {
   ],
   publications: [
     {
+      name: "How Annotation Helps to Create AI Systems: A Practitioner's View from the Data Pipeline",
+      desc: "Preprint · Zenodo · 2 Nov 2026 · DOI: 10.5281/zenodo.23884175 · Open Access, CC BY 4.0 · Experience-based article, not peer-reviewed research",
+      href: "https://doi.org/10.5281/zenodo.23884175"
+    },
+    {
       name: "The Human Foundation of Artificial Intelligence: Why Diverse Data and Careful Annotation Decide Whether AI Works",
       desc: "Preprint · Zenodo · 30 Oct 2026 · DOI: 10.5281/zenodo.23790604 · Open Access, CC BY 4.0 · Experience-based article, not peer-reviewed research",
       href: "https://doi.org/10.5281/zenodo.23790604"
