@@ -214,7 +214,10 @@ a:focus-visible, button:focus-visible {
   font-weight: 600;
   color: var(--sky);
 }
-.location { margin: 4px 0 0; font-size: 14.5px; color: #b9cbe8; }
+.location { margin: 4px 0 0; font-size: 14.5px; color: #b9cbe8; display: inline-flex; align-items: center; gap: 6px; }
+.icon { display: inline-flex; align-items: center; flex: none; }
+.icon svg { width: 15px; height: 15px; display: block; }
+.location .icon svg { width: 14px; height: 14px; }
 
 .contacts {
   list-style: none;
@@ -225,7 +228,9 @@ a:focus-visible, button:focus-visible {
   gap: 8px;
 }
 .contact-pill {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   padding: 7px 14px;
   border-radius: 999px;
   border: 1px solid rgba(141, 188, 255, 0.45);
