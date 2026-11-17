@@ -48,9 +48,29 @@ const CV = {
   ],
   projects: [
     {
+      name: "EduManager Pro — College LMS & CMS with Fee Management",
+      desc: "A complete multi-campus college management system built from scratch: admissions, attendance, exams, semester-wise fee challans, bank receiving, payroll, accounts and reports. Live demo linked.",
+      href: "https://pipsedumanager.pythonanywhere.com/login/"
+    },
+    {
       name: "Orush Grinding Mill Management System",
       desc: "Designed and built a complete mill management system (online + PC editions): party ledgers, vehicle gate in/out, grinding production, payments and reports for a phosphate grinding mill.",
-      href: "https://github.com/TalhaIslamJadoon"
+      href: "https://orushgrindingmill.pythonanywhere.com"
+    },
+    {
+      name: "Live Sports — All Games Live Coverage Website",
+      desc: "A live sports coverage website listing live and upcoming matches across all sports with official links, replays and original articles.",
+      href: "https://live-sports.sportsalllive.workers.dev"
+    },
+    {
+      name: "Canteen + Grocery POS System",
+      desc: "A point-of-sale system for a college canteen and grocery store: touch billing, kitchen tokens, stock, credit (udhaar) accounts and online ordering. Test copy linked.",
+      href: "https://canteen-pos.pages.dev"
+    },
+    {
+      name: "PIPS College ERP — Fees & Finance",
+      desc: "Fees and finance module of a college ERP built with a collaborator: challans, payments, wallets, cheque register, payroll and profit & loss.",
+      href: "https://pips-college-erp.vercel.app"
     },
     {
       name: "AI Movie's — Urdu AI Micro-Drama Channel",
@@ -77,7 +97,7 @@ const CV = {
     },
     {
       name: "Technical",
-      items: ["Python", "JavaScript", "HTML / CSS", "C++", "Java", "MySQL", "Git & GitHub", "LMS / CMS", "IT Support"]
+      items: ["Python", "JavaScript", "HTML / CSS", "C++", "Java", "MySQL", "Git & GitHub", "LMS / CMS", "IT Support", "SEO (Search Engine Optimization)", "Social Media Handling & Marketing"]
     }
   ],
   education: [
@@ -92,6 +112,30 @@ const CV = {
   availability: "Remote · Up to 40 hours/week · Can start immediately"
 };
 
+// ---------- page structure ----------
+
+// Section index: drives both the section ids and the sticky index nav.
+const SECTIONS = [
+  { id: "summary", label: "Summary" },
+  { id: "experience", label: "Experience" },
+  { id: "projects", label: "Projects" },
+  { id: "publications", label: "Publications" },
+  { id: "skills", label: "Skills" },
+  { id: "education", label: "Education" },
+  { id: "languages", label: "Languages" }
+];
+
+// Visual fill for the language bars, keyed by the level wording used in the
+// CV data itself. The label shown is always the data's own wording; no
+// percentage is ever printed.
+const LANGUAGE_FILL = {
+  "Native": 100,
+  "Upper-intermediate (B2)": 70
+};
+
+const prefersReducedMotion =
+  window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
 // ---------- rendering ----------
 
 function el(tag, className, text) {
@@ -101,58 +145,104 @@ function el(tag, className, text) {
   return node;
 }
 
-function section(title) {
-  const wrap = el("section", "section");
-  wrap.appendChild(el("h2", "section-title", title));
+function section(title, id) {
+  const wrap = el("section", "section reveal");
+  if (id) wrap.id = id;
+  const head = el("div", "section-head");
+  head.appendChild(el("h2", "section-title", title));
+  wrap.appendChild(head);
   return wrap;
 }
 
 function renderHeader(root) {
-  const header = el("header", "header");
-  header.appendChild(el("h1", "name", CV.name));
-  header.appendChild(el("p", "headline", CV.title));
-  header.appendChild(el("p", "location", CV.location));
+  const header = el("header", "hero reveal");
+
+  const inner = el("div", "hero-inner");
+
+  const photoWrap = el("div", "hero-photo");
+  const img = document.createElement("img");
+  img.src = "profile.jpg";
+  img.alt = "Talha Islam";
+  img.width = 368;
+  img.height = 308;
+  photoWrap.appendChild(img);
+  inner.appendChild(photoWrap);
+
+  const text = el("div", "hero-text");
+  text.appendChild(el("p", "hero-eyebrow", "Curriculum Vitae"));
+  text.appendChild(el("h1", "name", CV.name));
+  text.appendChild(el("p", "headline", CV.title));
+  text.appendChild(el("p", "location", CV.location));
 
   const list = el("ul", "contacts");
   CV.contacts.forEach((c) => {
     const li = el("li");
-    const a = el("a", null, c.value);
+    const a = el("a", "contact-pill", c.value);
     a.href = c.href;
     a.target = "_blank";
     a.rel = "noopener";
-    li.appendChild(el("span", "contact-label", c.label + ": "));
+    a.setAttribute("aria-label", c.label + ": " + c.value);
     li.appendChild(a);
     list.appendChild(li);
   });
-  header.appendChild(list);
-  header.appendChild(el("p", "availability", CV.availability));
+  text.appendChild(list);
+
+  const avail = el("p", "availability");
+  avail.appendChild(el("span", "avail-dot"));
+  avail.appendChild(document.createTextNode(CV.availability));
+  text.appendChild(avail);
+
+  // At-a-glance counts, computed from the CV data on this page.
+  const skillCount = CV.skillGroups.reduce((n, g) => n + g.items.length, 0);
+  const stats = [
+    { count: CV.experience.length, label: "Experience roles" },
+    { count: CV.projects.length, label: "Projects" },
+    { count: CV.publications.length, label: "Publications" },
+    { count: skillCount, label: "Skills" }
+  ];
+  const statList = el("ul", "stats");
+  stats.forEach((s) => {
+    const li = el("li", "stat");
+    const num = el("span", "stat-num", String(s.count));
+    num.setAttribute("data-count", String(s.count));
+    li.appendChild(num);
+    li.appendChild(el("span", "stat-label", s.label));
+    statList.appendChild(li);
+  });
+  text.appendChild(statList);
+
+  inner.appendChild(text);
+  header.appendChild(inner);
   root.appendChild(header);
 }
 
 function renderSummary(root) {
-  const s = section("Summary");
+  const s = section("Summary", "summary");
   s.appendChild(el("p", "summary", CV.summary));
   root.appendChild(s);
 }
 
 function renderExperience(root) {
-  const s = section("Experience");
+  const s = section("Experience", "experience");
+  const timeline = el("div", "timeline");
   CV.experience.forEach((job) => {
-    const block = el("div", "entry");
+    const block = el("div", "entry timeline-entry reveal");
     block.appendChild(el("h3", "entry-title", job.role));
     block.appendChild(el("p", "entry-org", job.org));
     const ul = el("ul", "points");
     job.points.forEach((p) => ul.appendChild(el("li", null, p)));
     block.appendChild(ul);
-    s.appendChild(block);
+    timeline.appendChild(block);
   });
+  s.appendChild(timeline);
   root.appendChild(s);
 }
 
 function renderProjects(root) {
-  const s = section("Projects");
+  const s = section("Projects", "projects");
+  const grid = el("div", "card-grid");
   CV.projects.forEach((proj) => {
-    const block = el("div", "entry");
+    const block = el("article", "card reveal");
     const h = el("h3", "entry-title");
     const a = el("a", null, proj.name);
     a.href = proj.href;
@@ -161,15 +251,22 @@ function renderProjects(root) {
     h.appendChild(a);
     block.appendChild(h);
     block.appendChild(el("p", "summary", proj.desc));
-    s.appendChild(block);
+    const link = el("a", "card-link", "View project");
+    link.href = proj.href;
+    link.target = "_blank";
+    link.rel = "noopener";
+    block.appendChild(link);
+    grid.appendChild(block);
   });
+  s.appendChild(grid);
   root.appendChild(s);
 }
 
 function renderPublications(root) {
-  const s = section("Publications");
+  const s = section("Publications", "publications");
+  const grid = el("div", "card-grid");
   CV.publications.forEach((pub) => {
-    const block = el("div", "entry");
+    const block = el("article", "card reveal");
     const h = el("h3", "entry-title");
     const a = el("a", null, pub.name);
     a.href = pub.href;
@@ -178,28 +275,39 @@ function renderPublications(root) {
     h.appendChild(a);
     block.appendChild(h);
     block.appendChild(el("p", "summary", pub.desc));
-    s.appendChild(block);
+    const link = el("a", "card-link", "Read on Zenodo");
+    link.href = pub.href;
+    link.target = "_blank";
+    link.rel = "noopener";
+    block.appendChild(link);
+    grid.appendChild(block);
   });
+  s.appendChild(grid);
   root.appendChild(s);
 }
 
 function renderSkills(root) {
-  const s = section("Skills");
+  const s = section("Skills", "skills");
+  const grid = el("div", "card-grid");
   CV.skillGroups.forEach((group) => {
-    const block = el("div", "entry");
-    block.appendChild(el("h3", "entry-title", group.name));
+    const block = el("div", "card skill-card reveal");
+    const head = el("div", "skill-head");
+    head.appendChild(el("h3", "entry-title", group.name));
+    head.appendChild(el("span", "skill-count", group.items.length + " skills"));
+    block.appendChild(head);
     const ul = el("ul", "chips");
     group.items.forEach((item) => ul.appendChild(el("li", "chip", item)));
     block.appendChild(ul);
-    s.appendChild(block);
+    grid.appendChild(block);
   });
+  s.appendChild(grid);
   root.appendChild(s);
 }
 
-function renderSimpleList(root, title, rows) {
-  const s = section(title);
+function renderSimpleList(root, title, id, rows) {
+  const s = section(title, id);
   rows.forEach((row) => {
-    const block = el("div", "entry");
+    const block = el("div", "entry reveal");
     block.appendChild(el("h3", "entry-title", row.item));
     if (row.org) block.appendChild(el("p", "entry-org", row.org));
     if (row.note) block.appendChild(el("p", "entry-note", row.note));
@@ -208,24 +316,186 @@ function renderSimpleList(root, title, rows) {
   root.appendChild(s);
 }
 
+function renderLanguages(root) {
+  const s = section("Languages", "languages");
+  const grid = el("div", "card-grid");
+  CV.languages.forEach((lang) => {
+    const block = el("div", "card lang-card reveal");
+    const head = el("div", "skill-head");
+    head.appendChild(el("h3", "entry-title", lang.item));
+    head.appendChild(el("span", "lang-level", lang.note));
+    block.appendChild(head);
+    const track = el("div", "lang-track");
+    track.setAttribute("role", "img");
+    track.setAttribute("aria-label", lang.item + " — " + lang.note);
+    const fill = el("span", "lang-fill");
+    const pct = LANGUAGE_FILL[lang.note];
+    if (pct) fill.style.setProperty("--w", pct + "%");
+    track.appendChild(fill);
+    block.appendChild(track);
+    grid.appendChild(block);
+  });
+  s.appendChild(grid);
+  root.appendChild(s);
+}
+
+function renderNav() {
+  const nav = document.getElementById("topNav");
+  if (!nav) return;
+  const brand = el("a", "nav-brand", CV.name);
+  brand.href = "#top";
+  nav.appendChild(brand);
+  const list = el("ul", "nav-list");
+  SECTIONS.forEach((s) => {
+    const li = el("li");
+    const a = el("a", "nav-link", s.label);
+    a.href = "#" + s.id;
+    a.setAttribute("data-spy", s.id);
+    li.appendChild(a);
+    list.appendChild(li);
+  });
+  nav.appendChild(list);
+}
+
 function render() {
   const root = document.getElementById("cv");
+  root.id = "cv";
   renderHeader(root);
   renderSummary(root);
   renderExperience(root);
   renderProjects(root);
   renderPublications(root);
   renderSkills(root);
-  renderSimpleList(root, "Education", CV.education);
-  renderSimpleList(root, "Languages", CV.languages.map((l) => ({ item: l.item, note: l.note })));
+  renderSimpleList(root, "Education", "education", CV.education);
+  renderLanguages(root);
+  renderNav();
 
   const footer = el("footer", "footer");
   footer.appendChild(el("p", null, "References available on request."));
   root.appendChild(footer);
 }
 
+// ---------- motion & indicators ----------
+
+function initReveal() {
+  const targets = document.querySelectorAll(".reveal");
+  if (prefersReducedMotion || !("IntersectionObserver" in window)) {
+    targets.forEach((t) => t.classList.add("in"));
+    return;
+  }
+  document.documentElement.classList.add("anim");
+  const io = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          e.target.classList.add("in");
+          io.unobserve(e.target);
+        }
+      });
+    },
+    { threshold: 0.08, rootMargin: "0px 0px -4% 0px" }
+  );
+  targets.forEach((t) => io.observe(t));
+}
+
+function initCounters() {
+  const nums = document.querySelectorAll(".stat-num[data-count]");
+  if (!nums.length) return;
+  const run = (node) => {
+    const target = parseInt(node.getAttribute("data-count"), 10) || 0;
+    if (prefersReducedMotion) {
+      node.textContent = String(target);
+      return;
+    }
+    const dur = 900;
+    const start = performance.now();
+    const tick = (now) => {
+      const p = Math.min((now - start) / dur, 1);
+      const eased = 1 - Math.pow(1 - p, 3);
+      node.textContent = String(Math.round(target * eased));
+      if (p < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  };
+  if (!("IntersectionObserver" in window)) {
+    nums.forEach(run);
+    return;
+  }
+  const io = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          run(e.target);
+          io.unobserve(e.target);
+        }
+      });
+    },
+    { threshold: 0.4 }
+  );
+  nums.forEach((n) => {
+    if (!prefersReducedMotion) n.textContent = "0";
+    io.observe(n);
+  });
+}
+
+function initScrollSpy() {
+  const links = document.querySelectorAll(".nav-link[data-spy]");
+  if (!links.length || !("IntersectionObserver" in window)) return;
+  const byId = {};
+  links.forEach((l) => (byId[l.getAttribute("data-spy")] = l));
+  const io = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((e) => {
+        if (!e.isIntersecting) return;
+        links.forEach((l) => l.classList.remove("active"));
+        const link = byId[e.target.id];
+        if (link) {
+          link.classList.add("active");
+          if (link.scrollIntoView) {
+            link.scrollIntoView({ block: "nearest", inline: "center" });
+          }
+        }
+      });
+    },
+    { rootMargin: "-30% 0px -60% 0px" }
+  );
+  SECTIONS.forEach((s) => {
+    const sec = document.getElementById(s.id);
+    if (sec) io.observe(sec);
+  });
+}
+
+function initProgress() {
+  const bar = document.getElementById("progressBar");
+  if (!bar) return;
+  let ticking = false;
+  const update = () => {
+    const doc = document.documentElement;
+    const max = doc.scrollHeight - doc.clientHeight;
+    const p = max > 0 ? window.scrollY / max : 0;
+    bar.style.transform = "scaleX(" + p + ")";
+    ticking = false;
+  };
+  window.addEventListener(
+    "scroll",
+    () => {
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(update);
+      }
+    },
+    { passive: true }
+  );
+  update();
+}
+
 document.addEventListener("DOMContentLoaded", () => {
+  document.body.id = "top";
   render();
+  initReveal();
+  initCounters();
+  initScrollSpy();
+  initProgress();
   const btn = document.getElementById("printBtn");
   if (btn) btn.addEventListener("click", () => window.print());
 });
