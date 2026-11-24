@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Talha Islam — CV</title>
-<meta name="description" content="CV of Talha Islam — AI Data Collection & Annotation Specialist, Computer Science graduate, Abbottabad, Pakistan.">
+<title>Talha Islam — Portfolio & CV</title>
+<meta name="description" content="Portfolio and CV of Talha Islam — AI Data Collection & Annotation Specialist, Computer Science graduate, Abbottabad, Pakistan.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://talhaislamjadoon.github.io/talha-islam-cv/">
 <!-- Open Graph -->
 <meta property="og:type" content="profile">
-<meta property="og:title" content="Talha Islam — CV">
-<meta property="og:description" content="CV of Talha Islam — AI Data Collection & Annotation Specialist, Computer Science graduate, Abbottabad, Pakistan.">
+<meta property="og:title" content="Talha Islam — Portfolio & CV">
+<meta property="og:description" content="Portfolio and CV of Talha Islam — AI Data Collection & Annotation Specialist, Computer Science graduate, Abbottabad, Pakistan.">
 <meta property="og:url" content="https://talhaislamjadoon.github.io/talha-islam-cv/">
 <meta property="og:image" content="https://talhaislamjadoon.github.io/talha-islam-cv/profile.jpg">
 <meta name="twitter:card" content="summary">
@@ -18,17 +18,300 @@
 <meta name="google-site-verification" content="PASTE-CODE-HERE">
 <meta name="msvalidate.01" content="PASTE-CODE-HERE">
 -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="progress no-print" aria-hidden="true"><span id="progressBar"></span></div>
-  <nav class="topnav no-print" id="topNav" aria-label="CV sections"><!-- Index links are rendered here by script.js --></nav>
 
-  <main class="cv" id="cv"><!-- CV is rendered here by script.js --></main>
+  <!-- ---------- slim top nav ---------- -->
+  <nav class="topnav no-print" aria-label="Portfolio sections">
+    <a class="nav-brand" href="#home">Talha Islam</a>
+    <ul class="nav-list">
+      <li><a class="nav-link" href="#home" data-spy="home">Home</a></li>
+      <li><a class="nav-link" href="#projects" data-spy="projects">Projects</a></li>
+      <li><a class="nav-link" href="#about" data-spy="about">About Me</a></li>
+      <li><a class="nav-link" href="#contact" data-spy="contact">Contact</a></li>
+    </ul>
+  </nav>
 
-  <div class="actions no-print">
-    <button id="printBtn" type="button">Print / Save as PDF</button>
-  </div>
+  <main>
+    <!-- ---------- hero ---------- -->
+    <section class="hero" id="home">
+      <div class="hero-stage">
+        <h1 class="hero-title">Hi, I&rsquo;m Talha</h1>
+        <!-- Living avatar: a canvas that swaps pre-rendered poses — its gaze
+             follows the visitor's cursor and it blinks on a timer (script.js).
+             The static <img> is the fallback if the script/images fail. -->
+        <div class="hero-avatar no-print" id="avatarWrap" aria-hidden="true">
+          <canvas id="avatarCanvas" width="512" height="512" title="Psst — I follow your cursor. Click me!"></canvas>
+          <img class="avatar-fallback" src="avatar/rest.png" alt="" width="512" height="512" hidden>
+          <p class="avatar-hint">I follow your cursor — click me!</p>
+        </div>
+      </div>
+      <div class="hero-bottom">
+        <p class="hero-tagline">Building AI systems, education platforms and digital products from Pakistan</p>
+        <a class="btn-pink" href="#contact">Contact Me</a>
+      </div>
+      <p class="hero-role">AI Data Collection &amp; Annotation Specialist · Computer Science Graduate · Abbottabad, Pakistan</p>
+    </section>
+
+    <!-- ---------- about ---------- -->
+    <section class="section about" id="about">
+      <!-- Floating glossy doodles (inline SVG, decorative) -->
+      <svg class="doodle doodle-moon" viewBox="0 0 100 100" aria-hidden="true"><defs><linearGradient id="gMoon" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7dd3fc"/><stop offset="1" stop-color="#2563eb"/></linearGradient></defs><path d="M63 8a40 40 0 1 0 29 54A32 32 0 0 1 63 8z" fill="url(#gMoon)"/><ellipse cx="38" cy="34" rx="10" ry="6" fill="#ffffff" opacity="0.35" transform="rotate(-38 38 34)"/></svg>
+      <svg class="doodle doodle-smiley" viewBox="0 0 100 100" aria-hidden="true"><defs><linearGradient id="gSmiley" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff7ac3"/><stop offset="1" stop-color="#e11d8f"/></linearGradient></defs><circle cx="50" cy="50" r="42" fill="url(#gSmiley)"/><ellipse cx="36" cy="30" rx="14" ry="8" fill="#ffffff" opacity="0.35" transform="rotate(-24 36 30)"/><circle cx="36" cy="44" r="5" fill="#fff"/><circle cx="64" cy="44" r="5" fill="#fff"/><path d="M32 62q18 16 36 0" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round"/></svg>
+      <svg class="doodle doodle-cube" viewBox="0 0 100 100" aria-hidden="true"><polygon points="50,6 90,28 50,50 10,28" fill="#c4b5fd"/><polygon points="10,28 50,50 50,94 10,72" fill="#8b5cf6"/><polygon points="90,28 50,50 50,94 90,72" fill="#6d28d9"/><polygon points="50,6 90,28 78,34 40,15" fill="#ffffff" opacity="0.28"/></svg>
+      <svg class="doodle doodle-plane" viewBox="0 0 100 100" aria-hidden="true"><polygon points="6,52 94,10 62,90 48,60" fill="#e0f2fe"/><polygon points="6,52 94,10 48,60" fill="#38bdf8"/><polygon points="48,60 62,90 54,58" fill="#0369a1"/></svg>
+
+      <div class="section-inner reveal">
+        <h2 class="mega-title">About Me</h2>
+        <p class="about-text">Computer Science graduate and AI data specialist based in Abbottabad, Pakistan. I lead a remote team delivering data collection and annotation for AI companies — video, image, audio and text projects with structured quality control — and I work as an HR &amp; IT Officer at the Pakistan Institute of Professional Studies (PIPS), with hands-on experience in LMS/CMS administration and IT support. I also design and build software, including the Orush Grinding Mill management system and the EduManager college LMS.</p>
+        <img class="about-photo" src="profile.jpg" alt="Talha Islam" width="368" height="308" loading="lazy">
+        <p class="availability"><span class="avail-dot" aria-hidden="true"></span>Remote · Up to 40 hours/week · Can start immediately</p>
+        <a class="btn-pink" href="#contact">Contact Me</a>
+      </div>
+    </section>
+
+    <!-- ---------- services / what I do ---------- -->
+    <section class="section services" id="services">
+      <div class="section-inner reveal">
+        <h2 class="section-title dark-title">What I Do</h2>
+        <div class="services-grid">
+          <div class="service">
+            <span class="service-num">01</span>
+            <h3 class="service-name">AI &amp; Data Solutions</h3>
+            <p class="service-desc">Data collection, video and image annotation, transcription and quality control for AI training data.</p>
+          </div>
+          <div class="service">
+            <span class="service-num">02</span>
+            <h3 class="service-name">Web &amp; Software Systems</h3>
+            <p class="service-desc">Custom web and software systems — management platforms, point-of-sale and live-coverage websites.</p>
+          </div>
+          <div class="service">
+            <span class="service-num">03</span>
+            <h3 class="service-name">Education Technology</h3>
+            <p class="service-desc">College LMS/CMS and ERP systems: admissions, attendance, exams, fee challans, payroll and reports.</p>
+          </div>
+          <div class="service">
+            <span class="service-num">04</span>
+            <h3 class="service-name">Content &amp; Automation</h3>
+            <p class="service-desc">AI-generated Urdu video content and automated publishing for YouTube and TikTok.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ---------- projects ---------- -->
+    <section class="section" id="projects">
+      <div class="section-inner">
+        <h2 class="section-title grad-title reveal">Projects</h2>
+        <div class="card-grid">
+          <article class="card reveal">
+            <h3 class="card-title"><a href="https://pipsedumanager.pythonanywhere.com/login/" target="_blank" rel="noopener">EduManager Pro — College LMS &amp; CMS with Fee Management</a></h3>
+            <p class="card-text">A complete multi-campus college management system built from scratch: admissions, attendance, exams, semester-wise fee challans, bank receiving, payroll, accounts and reports. Live demo linked.</p>
+            <a class="card-link" href="https://pipsedumanager.pythonanywhere.com/login/" target="_blank" rel="noopener">View project</a>
+          </article>
+          <article class="card reveal">
+            <h3 class="card-title"><a href="https://orushgrindingmill.pythonanywhere.com" target="_blank" rel="noopener">Orush Grinding Mill Management System</a></h3>
+            <p class="card-text">Designed and built a complete mill management system (online + PC editions): party ledgers, vehicle gate in/out, grinding production, payments and reports for a phosphate grinding mill.</p>
+            <a class="card-link" href="https://orushgrindingmill.pythonanywhere.com" target="_blank" rel="noopener">View project</a>
+          </article>
+          <article class="card reveal">
+            <h3 class="card-title"><a href="https://live-sports.sportsalllive.workers.dev" target="_blank" rel="noopener">Live Sports — All Games Live Coverage Website</a></h3>
+            <p class="card-text">A live sports coverage website listing live and upcoming matches across all sports with official links, replays and original articles.</p>
+            <a class="card-link" href="https://live-sports.sportsalllive.workers.dev" target="_blank" rel="noopener">View project</a>
+          </article>
+          <article class="card reveal">
+            <h3 class="card-title"><a href="https://canteen-pos.pages.dev" target="_blank" rel="noopener">Canteen + Grocery POS System</a></h3>
+            <p class="card-text">A point-of-sale system for a college canteen and grocery store: touch billing, kitchen tokens, stock, credit (udhaar) accounts and online ordering. Test copy linked.</p>
+            <a class="card-link" href="https://canteen-pos.pages.dev" target="_blank" rel="noopener">View project</a>
+          </article>
+          <article class="card reveal">
+            <h3 class="card-title"><a href="https://pips-college-erp.vercel.app" target="_blank" rel="noopener">PIPS College ERP — Fees &amp; Finance</a></h3>
+            <p class="card-text">Fees and finance module of a college ERP built with a collaborator: challans, payments, wallets, cheque register, payroll and profit &amp; loss.</p>
+            <a class="card-link" href="https://pips-college-erp.vercel.app" target="_blank" rel="noopener">View project</a>
+          </article>
+          <article class="card reveal">
+            <h3 class="card-title"><a href="https://www.youtube.com/@AIMoviesPakistan" target="_blank" rel="noopener">AI Movie&rsquo;s — Urdu AI Micro-Drama Channel</a></h3>
+            <p class="card-text">Creator of an Urdu AI-generated micro-drama series published daily on YouTube and TikTok.</p>
+            <a class="card-link" href="https://www.youtube.com/@AIMoviesPakistan" target="_blank" rel="noopener">View project</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ---------- experience ---------- -->
+    <section class="section" id="experience">
+      <div class="section-inner">
+        <h2 class="section-title grad-title reveal">Experience</h2>
+        <div class="timeline">
+          <div class="entry reveal">
+            <h3 class="entry-title">Team Lead — AI Data Collection &amp; Annotation Services</h3>
+            <p class="entry-org">Remote team (own business)</p>
+            <ul class="points">
+              <li>Lead a remote team delivering data collection and annotation projects for AI clients</li>
+              <li>Video, image, audio and text data projects with structured quality control</li>
+            </ul>
+          </div>
+          <div class="entry reveal">
+            <h3 class="entry-title">Video Annotator (Remote)</h3>
+            <p class="entry-org">Atlas Capture</p>
+            <ul class="points">
+              <li>AI video annotation for machine-learning training datasets</li>
+            </ul>
+          </div>
+          <div class="entry reveal">
+            <h3 class="entry-title">AI Content Contributor</h3>
+            <p class="entry-org">Annopati</p>
+            <ul class="points">
+              <li>Produced 15-second robotics training videos to specification</li>
+            </ul>
+          </div>
+          <div class="entry reveal">
+            <h3 class="entry-title">HR &amp; IT Officer</h3>
+            <p class="entry-org">Pakistan Institute of Professional Studies (PIPS)</p>
+            <ul class="points">
+              <li>LMS/CMS management and day-to-day administration</li>
+              <li>IT support for staff and systems</li>
+              <li>HR documentation and records</li>
+            </ul>
+          </div>
+          <div class="entry reveal">
+            <h3 class="entry-title">Business Owner</h3>
+            <p class="entry-org">Poultry Farming</p>
+            <ul class="points">
+              <li>Ran a poultry farming business for 2 years — operations, sales and accounts</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ---------- publications ---------- -->
+    <section class="section" id="publications">
+      <div class="section-inner">
+        <h2 class="section-title grad-title reveal">Publications</h2>
+        <div class="card-grid">
+          <article class="card reveal">
+            <h3 class="card-title"><a href="https://doi.org/10.5281/zenodo.23884175" target="_blank" rel="noopener">How Annotation Helps to Create AI Systems: A Practitioner&rsquo;s View from the Data Pipeline</a></h3>
+            <p class="card-text">Preprint · Zenodo · 2 Nov 2026 · DOI: 10.5281/zenodo.23884175 · Open Access, CC BY 4.0 · Experience-based article, not peer-reviewed research</p>
+            <a class="card-link" href="https://doi.org/10.5281/zenodo.23884175" target="_blank" rel="noopener">Read on Zenodo</a>
+          </article>
+          <article class="card reveal">
+            <h3 class="card-title"><a href="https://doi.org/10.5281/zenodo.23790604" target="_blank" rel="noopener">The Human Foundation of Artificial Intelligence: Why Diverse Data and Careful Annotation Decide Whether AI Works</a></h3>
+            <p class="card-text">Preprint · Zenodo · 30 Oct 2026 · DOI: 10.5281/zenodo.23790604 · Open Access, CC BY 4.0 · Experience-based article, not peer-reviewed research</p>
+            <a class="card-link" href="https://doi.org/10.5281/zenodo.23790604" target="_blank" rel="noopener">Read on Zenodo</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ---------- skills ---------- -->
+    <section class="section" id="skills">
+      <div class="section-inner">
+        <h2 class="section-title grad-title reveal">Skills</h2>
+        <div class="card-grid">
+          <div class="card reveal">
+            <div class="skill-head">
+              <h3 class="card-title">Data &amp; AI</h3>
+              <span class="skill-count">8 skills</span>
+            </div>
+            <ul class="chips">
+              <li class="chip">Video Annotation</li>
+              <li class="chip">Image Annotation</li>
+              <li class="chip">Data Collection</li>
+              <li class="chip">Quality Control (QC)</li>
+              <li class="chip">Transcription</li>
+              <li class="chip">Urdu Language Data</li>
+              <li class="chip">Audio / Voice Recording</li>
+              <li class="chip">Game Testing</li>
+            </ul>
+          </div>
+          <div class="card reveal">
+            <div class="skill-head">
+              <h3 class="card-title">Technical</h3>
+              <span class="skill-count">11 skills</span>
+            </div>
+            <ul class="chips">
+              <li class="chip">Python</li>
+              <li class="chip">JavaScript</li>
+              <li class="chip">HTML / CSS</li>
+              <li class="chip">C++</li>
+              <li class="chip">Java</li>
+              <li class="chip">MySQL</li>
+              <li class="chip">Git &amp; GitHub</li>
+              <li class="chip">LMS / CMS</li>
+              <li class="chip">IT Support</li>
+              <li class="chip">SEO (Search Engine Optimization)</li>
+              <li class="chip">Social Media Handling &amp; Marketing</li>
+            </ul>
+          </div>
+        </div>
+
+        <h3 class="sub-title reveal">Languages</h3>
+        <div class="card-grid">
+          <div class="card reveal">
+            <div class="skill-head">
+              <h3 class="card-title">Urdu</h3>
+              <span class="lang-level">Native</span>
+            </div>
+            <div class="lang-track" role="img" aria-label="Urdu — Native"><span class="lang-fill" style="--w:100%"></span></div>
+          </div>
+          <div class="card reveal">
+            <div class="skill-head">
+              <h3 class="card-title">English</h3>
+              <span class="lang-level">Upper-intermediate (B2)</span>
+            </div>
+            <div class="lang-track" role="img" aria-label="English — Upper-intermediate (B2)"><span class="lang-fill" style="--w:70%"></span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ---------- education ---------- -->
+    <section class="section" id="education">
+      <div class="section-inner">
+        <h2 class="section-title grad-title reveal">Education</h2>
+        <div class="entry reveal">
+          <h3 class="entry-title">BS Computer Science</h3>
+          <p class="entry-org">COMSATS University Islamabad, Abbottabad Campus</p>
+          <p class="entry-note">2022 – 2025</p>
+        </div>
+        <div class="entry reveal">
+          <h3 class="entry-title">BA Law &amp; Political Science</h3>
+          <p class="entry-org">Abbottabad University of Science and Technology (AUST)</p>
+        </div>
+        <div class="entry reveal">
+          <h3 class="entry-title">Pharmacy Technician Diploma</h3>
+          <p class="entry-org">Pakistan Institute of Professional Studies (PIPS)</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ---------- contact ---------- -->
+    <section class="section contact" id="contact">
+      <div class="section-inner reveal">
+        <h2 class="mega-title grad-text">Contact Me</h2>
+        <p class="contact-sub">AI Data Collection &amp; Annotation Specialist · Computer Science Graduate — Abbottabad, Pakistan. Remote · Up to 40 hours/week · Can start immediately.</p>
+        <ul class="contacts">
+          <li><a class="contact-pill" href="mailto:talhaislampips@gmail.com" aria-label="Email: talhaislampips@gmail.com"><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg></span><span>talhaislampips@gmail.com</span></a></li>
+          <li><a class="contact-pill" href="tel:+923118954102" aria-label="Phone: +92 311 8954102"><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span><span>+92 311 8954102</span></a></li>
+          <li><a class="contact-pill" href="https://www.linkedin.com/in/talha-i-a70964240" target="_blank" rel="noopener" aria-label="LinkedIn: linkedin.com/in/talha-i-a70964240"><span class="icon"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.55V9h3.57v11.45z"/></svg></span><span>linkedin.com/in/talha-i-a70964240</span></a></li>
+          <li><a class="contact-pill" href="https://github.com/TalhaIslamJadoon" target="_blank" rel="noopener" aria-label="GitHub: github.com/TalhaIslamJadoon"><span class="icon"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></span><span>github.com/TalhaIslamJadoon</span></a></li>
+        </ul>
+        <div class="actions no-print">
+          <button id="printBtn" type="button">Print / Save as PDF</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>Talha Islam · Abbottabad, Pakistan · References available on request.</p>
+  </footer>
 
   <script src="script.js"></script>
 </body>
