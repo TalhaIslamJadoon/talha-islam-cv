@@ -9,24 +9,116 @@ const prefersReducedMotion =
 // ---------- motion & indicators ----------
 
 function initReveal() {
-  const targets = document.querySelectorAll(".reveal");
+  const targets = new Set(document.querySelectorAll(".reveal"));
+
+  // Section headings get the gentler rise-and-scale treatment.
+  document
+    .querySelectorAll(".section-title, .mega-title, .sub-title")
+    .forEach((h) => h.classList.add("reveal-title"));
+
+  // Stagger: the children of a group appear one after another. Children
+  // that are not .reveal yet (services, chips, contact pills, education
+  // entries) join the reveal system here.
+  const stagger = (el, i, step, cap) => {
+    el.style.setProperty("--d", Math.min(i * step, cap).toFixed(2) + "s");
+  };
+  const groups = [
+    [".card-grid", 0.09, 0.55],
+    [".services-grid", 0.1, 0.4],
+    [".timeline", 0.12, 0.5],
+    [".chips", 0.045, 0.5],
+    [".contacts", 0.08, 0.32],
+    ["#education .section-inner", 0.12, 0.36],
+  ];
+  groups.forEach(([sel, step, cap]) => {
+    document.querySelectorAll(sel).forEach((group) => {
+      Array.from(group.children).forEach((child, i) => {
+        child.classList.add("reveal");
+        targets.add(child);
+        stagger(child, i, step, cap);
+      });
+    });
+  });
+
+  // Whole-block .reveal containers (About / Services / Contact inners):
+  // animate their parts in sequence instead of one flat block. Grid and
+  // list children are skipped — the groups above stagger their own items.
+  document.querySelectorAll(".section-inner.reveal").forEach((box) => {
+    targets.delete(box);
+    box.classList.remove("reveal");
+    let i = 0;
+    Array.from(box.children).forEach((child) => {
+      if (
+        child.classList.contains("services-grid") ||
+        child.classList.contains("contacts")
+      ) {
+        return;
+      }
+      child.classList.add("reveal");
+      targets.add(child);
+      stagger(child, i++, 0.12, 0.48);
+    });
+  });
+
   if (prefersReducedMotion || !("IntersectionObserver" in window)) {
     targets.forEach((t) => t.classList.add("in"));
     return;
   }
   document.documentElement.classList.add("anim");
+
+  // Hero: the pieces above the fold glide in on page load, staggered.
+  [
+    [".hero-title", 0],
+    [".hero-tagline", 0.18],
+    [".hero .btn-blue", 0.34],
+    [".hero-role", 0.5],
+  ].forEach(([sel, d]) => {
+    const el = document.querySelector(sel);
+    if (el) {
+      el.style.setProperty("--d", d + "s");
+      el.classList.add("reveal-load");
+    }
+  });
+
+  const reveal = (el) => {
+    if (el.classList.contains("in")) return;
+    el.classList.add("in");
+    // Once the reveal has played, clear the stagger delay so hover
+    // transitions on the element are not held back by it.
+    const settle = () => el.classList.add("settled");
+    el.addEventListener("transitionend", function h(e) {
+      if (e.propertyName === "opacity") {
+        settle();
+        el.removeEventListener("transitionend", h);
+      }
+    });
+    setTimeout(settle, 2200);
+  };
+
   const io = new IntersectionObserver(
     (entries) => {
       entries.forEach((e) => {
         if (e.isIntersecting) {
-          e.target.classList.add("in");
+          reveal(e.target);
           io.unobserve(e.target);
         }
       });
     },
-    { threshold: 0.08, rootMargin: "0px 0px -4% 0px" }
+    { threshold: 0.05, rootMargin: "0px 0px -6% 0px" }
   );
   targets.forEach((t) => io.observe(t));
+
+  // Safety sweep: anything already on screen must never stay hidden,
+  // even if the observer ever misfires.
+  const sweep = () => {
+    targets.forEach((el) => {
+      if (el.classList.contains("in")) return;
+      const r = el.getBoundingClientRect();
+      if (r.top < window.innerHeight && r.bottom > 0) reveal(el);
+    });
+  };
+  setTimeout(sweep, 900);
+  setTimeout(sweep, 2400);
 }
 
 function initScrollSpy() {
