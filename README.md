@@ -9,6 +9,10 @@ so updating the CV means editing one data object.
 - `index.html` — page shell
 - `style.css` — styling (screen + print/PDF)
 - `script.js` — CV data + renderer
+- `avatar/` — pre-rendered poses for the hero "living avatar": a canvas swaps
+  between them so the character's gaze follows the visitor's cursor, blinks on
+  a timer, and cycles fun expressions (grin / heart-eyes / mock-angry) on click.
+  On touch devices the gaze wanders on its own. Pure canvas + timers, no libraries.
 
 ## Use
 
