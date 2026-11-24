@@ -225,6 +225,11 @@ a:focus-visible, button:focus-visible {
   height: auto;
   border-radius: 26px;
   cursor: pointer;
+  /* Talha's fix (24 Nov): the picture stays centred over the headline but
+     slightly transparent, so the letters of "HI, I'M TALHA" behind it show
+     through and stay readable. Opacity is on the picture only — the hint
+     text and the click/gaze behaviour are unaffected. */
+  opacity: 0.8;
   border: 1px solid rgba(255, 255, 255, 0.14);
   box-shadow: 0 30px 80px rgba(0, 0, 0, 0.65), 0 0 60px rgba(255, 46, 159, 0.22), 0 0 120px rgba(139, 92, 246, 0.18);
 }
@@ -235,6 +240,7 @@ a:focus-visible, button:focus-visible {
   margin: 0 auto;
   border-radius: 26px;
   object-fit: cover;
+  opacity: 0.8; /* same slight transparency as the canvas (see above) */
   border: 1px solid rgba(255, 255, 255, 0.14);
   box-shadow: 0 30px 80px rgba(0, 0, 0, 0.65);
 }
